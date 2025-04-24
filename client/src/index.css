@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lora:wght@500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 120 10% 98%;
+  --foreground: 120 14.3% 4.1%;
+  --muted: 120 4.8% 95.9%;
+  --muted-foreground: 120 5.3% 44.7%;
+  --popover: 120 5% 100%;
+  --popover-foreground: 120 14.3% 4.1%;
+  --card: 120 5% 100%;
+  --card-foreground: 120 14.3% 4.1%;
+  --border: 120 10% 90%;
+  --input: 120 5.9% 90%;
+  --primary: 134 40% 35%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 98 54% 54%;
+  --secondary-foreground: 0 0% 0%;
+  --accent: 65 100% 50%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 134 40% 35%;
+  --radius: 0.5rem;
+
+  /* Additional theme colors from design */
+  --primary-light: 134 45% 45%;
+  --primary-dark: 134 45% 25%;
+  --secondary-light: 98 60% 60%;
+  --secondary-dark: 98 60% 45%;
+  --accent-light: 65 100% 65%;
+  --accent-dark: 65 100% 40%;
+  --earth-light: 30 35% 47%;
+  --earth: 30 45% 38%;
+  --earth-dark: 30 45% 29%;
+  --background-dark: 120 10% 93%;
+}
+
+.dark {
+  --background: 135 15% 10%;
+  --foreground: 120 5% 98%;
+  --muted: 135 10% 16%;
+  --muted-foreground: 135 5% 65%;
+  --popover: 135 12% 8%;
+  --popover-foreground: 120 5% 98%;
+  --card: 135 12% 8%;
+  --card-foreground: 120 5% 98%;
+  --border: 135 10% 20%;
+  --input: 135 10% 20%;
+  --primary: 134 40% 45%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 98 54% 54%;
+  --secondary-foreground: 0 0% 0%;
+  --accent: 65 90% 55%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 134 40% 45%;
+
+  --primary-light: 134 45% 55%;
+  --primary-dark: 134 45% 30%;
+  --secondary-light: 98 60% 65%;
+  --secondary-dark: 98 60% 45%;
+  --accent-light: 65 100% 65%;
+  --accent-dark: 65 100% 40%;
+  --earth-light: 30 35% 52%;
+  --earth: 30 45% 43%;
+  --earth-dark: 30 45% 34%;
+  --background-dark: 135 15% 6%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+/* Custom classes for the chat interface */
+.chat-container {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary) / 0.3);
+  border-radius: 20px;
+}
+
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-indicator span {
+  @apply bg-primary;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 2px;
+  animation: typing 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.message-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.message-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Knowledge card styling */
+.knowledge-card {
+  border-left: 4px solid hsl(var(--secondary));
+  position: relative;
+  overflow: hidden;
+}
+
+.knowledge-card::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: hsl(var(--secondary) / 0.1);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(45deg);
+}
+
+.knowledge-card-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.knowledge-card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms ease-out;
+  transition-delay: 100ms;
+}
+
+/* Additional plant-themed styles */
+.leaf-pattern-bg {
+  background-image: radial-gradient(
+    circle at 25px 25px,
+    hsl(var(--secondary) / 0.05) 2%,
+    transparent 0%
+  ),
+  radial-gradient(
+    circle at 75px 75px,
+    hsl(var(--primary) / 0.05) 2%,
+    transparent 0%
+  );
+  background-size: 100px 100px;
+}
+
+/* Header gradient */
+.header-gradient {
+  background: linear-gradient(to right, 
+    hsl(var(--primary)), 
+    hsl(var(--primary-dark))
+  );
+}
